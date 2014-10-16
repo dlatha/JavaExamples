@@ -1,9 +1,15 @@
 package my.algorithms.bst.examples;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
+
 public class BinarySearchTreeImpl implements BinarySearchTree{
 
 	Node root = null;
-
+	List<Node> preOrder = new ArrayList<Node>();
+	
 	public boolean lookUp(int value) {
 		if (root == null) {
 			return false;
@@ -132,15 +138,14 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		}
 		
 	}
-	private Node preOrder(Node node) {
+	private void preOrder(Node node) {
 		if(node == null){
-			return null;
+			return;
 		}
 		System.out.print(node.data + "\t");
-		Node tmp = node;
+		preOrder.add(node);
 		preOrder(node.left);
 		preOrder(node.right);
-		return tmp;
 	}
 	
 	public void inOrder(){
@@ -177,18 +182,43 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 
 	public void mirrorBinaryTree(Node node) {
 		if(root == null) return;
+		
 		System.out.println(root.data);
-		mirrorBinaryInsert(preOrder(root.left));
-		mirrorBinaryInsert(preOrder(root.right));
+		preOrder.add(root);
+		preOrder(root.left);
+		preOrder(root.right);
+		root = preOrder.get(0);
+		while(!stack.empty()){
+			mirrorBinaryInsert(stack.pop().data);
+		}
 	}
 
-	private void mirrorBinaryInsert(Node node) {
-		if(node == null){
+	private void mirrorBinaryInsert(int value) {
+		if(root == null){
 			return;
 		}else{
-			
+			mirrorBinaryInsert(root, value);
 		}
-			
+	}
+
+	private void mirrorBinaryInsert(Node node, int value) {
+		if(node == null){
+			return;
+		}else if(value < node.data){
+			if(node.right != null){
+				mirrorBinaryInsert(node.right,value);
+			}else{
+				node.right = new Node(value);
+				System.out.println("inserted right:" + value);
+			}
+		}else{
+			if(node.left != null){
+				mirrorBinaryInsert(node.left,value);
+			}else{
+				node.left = new Node(value);
+				System.out.println("inserted left:" + value);
+			}
+		}
 	}
 	
 	
