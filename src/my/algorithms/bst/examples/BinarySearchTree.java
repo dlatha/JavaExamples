@@ -17,4 +17,12 @@ public interface BinarySearchTree {
 	public void preOrder();
 	
 	public void inOrder();
+	
+	/**
+	 * Checks if the tree has given sum path from root to leaf. 
+	 * Check http://cslibrary.stanford.edu/110/BinaryTrees.pdf problem 7 for reference to the question.
+	 */
+	public boolean hasPathSum(int value);
+	
+	public void mirrorBinaryTree(Node node);
 }

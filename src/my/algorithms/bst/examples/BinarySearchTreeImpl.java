@@ -132,13 +132,15 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		}
 		
 	}
-	private void preOrder(Node node) {
+	private Node preOrder(Node node) {
 		if(node == null){
-			return;
+			return null;
 		}
 		System.out.print(node.data + "\t");
+		Node tmp = node;
 		preOrder(node.left);
 		preOrder(node.right);
+		return tmp;
 	}
 	
 	public void inOrder(){
@@ -156,4 +158,38 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		inOrder(node.right);
 	}
 
+	public boolean hasPathSum(int value) {
+		if(root == null){
+			return false;
+		}else{
+			return hasPathSum(root, value);
+		}
+	}
+
+	private boolean hasPathSum(Node node, int value) {
+		if(node == null){
+			return value == 0;
+		}else{
+			int subSum = value - node.data;
+			return (hasPathSum(node.left,subSum) || hasPathSum(node.right, subSum)); 
+		}
+	}
+
+	public void mirrorBinaryTree(Node node) {
+		if(root == null) return;
+		System.out.println(root.data);
+		mirrorBinaryInsert(preOrder(root.left));
+		mirrorBinaryInsert(preOrder(root.right));
+	}
+
+	private void mirrorBinaryInsert(Node node) {
+		if(node == null){
+			return;
+		}else{
+			
+		}
+			
+	}
+	
+	
 }

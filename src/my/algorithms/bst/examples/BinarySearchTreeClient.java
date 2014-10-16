@@ -9,6 +9,7 @@ public class BinarySearchTreeClient {
 			bst.insert(i);
 		}
 
-		bst.inOrder();	
+		bst.mirrorBinaryTree(new Node(0));
+		System.out.println(bst.hasPathSum(260));
 	}
 }
