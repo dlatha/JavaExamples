@@ -24,5 +24,10 @@ public interface BinarySearchTree {
 	 */
 	public boolean hasPathSum(int value);
 	
-	public void mirrorBinaryTree(Node node);
+	public void mirrorBinaryTree();
+	
+	public void doubleBinaryTree();
+	
+	//public boolean sameTree(BinarySearchTree tree);
+
 }

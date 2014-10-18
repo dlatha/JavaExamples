@@ -2,13 +2,12 @@ package my.algorithms.bst.examples;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 
 public class BinarySearchTreeImpl implements BinarySearchTree{
 
 	Node root = null;
 	List<Node> preOrder = new ArrayList<Node>();
+	List<Node> inOrder = new ArrayList<Node>();
 	
 	public boolean lookUp(int value) {
 		if (root == null) {
@@ -146,6 +145,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		preOrder.add(node);
 		preOrder(node.left);
 		preOrder(node.right);
+		System.out.println();
 	}
 	
 	public void inOrder(){
@@ -157,7 +157,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 	private void inOrder(Node node) {
 		if(node == null){
 			return;
-		}
+		}inOrder.add(node);
 		inOrder(node.left);
 		System.out.print(node.data + "\t");
 		inOrder(node.right);
@@ -180,7 +180,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		}
 	}
 
-	public void mirrorBinaryTree(Node node) {
+	public void mirrorBinaryTree(	) {
 		if(root == null) return;
 		
 		System.out.println(root.data);
@@ -188,8 +188,8 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		preOrder(root.left);
 		preOrder(root.right);
 		root = preOrder.get(0);
-		while(!stack.empty()){
-			mirrorBinaryInsert(stack.pop().data);
+		for(int i=1; i< preOrder.size(); i++){
+			mirrorBinaryInsert(preOrder.get(i).data);
 		}
 	}
 
@@ -220,6 +220,68 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 			}
 		}
 	}
+
+	public void doubleBinaryTree() {
+		if(root == null){
+			return;
+		}else{
+			doubleBinaryTree(root);
+		}
+	}
+
+	private void doubleBinaryTree(Node node) {
+		if(node == null){
+			return;
+		}else{
+			if(node.left == null){
+				node.left = new Node(node.data);
+				System.out.println("new left node" +  node.left.data);
+			}else{
+				Node left = node.left;
+				node.left = new Node(node.data);
+				node.left.left = left;
+				System.out.println("new left node" +  node.left.data);
+				if(node.right != null){
+					doubleBinaryTree(node.left.left);
+					doubleBinaryTree(node.right);	
+				}else{
+					doubleBinaryTree(node.left.left);
+				}
+			}
+		}
+	}
 	
-	
+	public boolean sameTree(BinarySearchTreeImpl tree){
+		if(tree.root == null){
+			return false;
+		}else{
+			System.out.println("preOrder tree1");
+			preOrder(root);
+			List<Node> tree1_preOrder = new ArrayList<Node>();
+			tree1_preOrder.addAll(preOrder);
+			preOrder.clear();
+			System.out.println("preOrder tree2");
+			preOrder(tree.root);
+			List<Node> tree2_preOrder = preOrder;
+			System.out.println("inOrder tree1");
+			inOrder(root);
+			List<Node> tree1_inOrder = new ArrayList<Node>();
+			tree1_inOrder.addAll(inOrder);
+			inOrder.clear();
+			System.out.println();
+			System.out.println("inOrder tree2");
+			inOrder(tree.root);
+			List<Node> tree2_inOrder = inOrder;
+			if(tree1_preOrder.size() != tree2_preOrder.size()){
+				return false;
+			}for(int i =0; i < tree1_preOrder.size() ; i++){
+				if(!(tree1_preOrder.get(i).data == tree2_preOrder.get(i).data) || !(tree1_inOrder.get(i).data == tree2_inOrder.get(i).data)){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+	}
+
 }
