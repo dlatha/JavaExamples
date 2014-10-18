@@ -27,6 +27,8 @@ public interface BinarySearchTree {
 	public void mirrorBinaryTree();
 	
 	public void doubleBinaryTree();
+
+	public void getRootToLeafPaths();
 	
 	//public boolean sameTree(BinarySearchTree tree);
 

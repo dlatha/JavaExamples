@@ -284,4 +284,28 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		
 	}
 
+	public void getRootToLeafPaths() {
+		System.out.println("Root to Leaf Paths");
+		if(root == null){
+			return;
+		}
+		getRootToLeafPaths(root, new ArrayList<Node>());
+	}
+
+	private void getRootToLeafPaths(Node node, ArrayList<Node> path) {
+		if(node == null){
+			return;
+			
+		}path.add(node);
+		if(node.left == null && node.right == null){
+			for(Node n : path){
+				System.out.print(n.data + "\t");
+			}
+			System.out.println();
+			return;
+		}
+		getRootToLeafPaths(node.left, new ArrayList<Node>(path));
+		getRootToLeafPaths(node.right, new ArrayList<Node>(path));
+	}
+
 }
