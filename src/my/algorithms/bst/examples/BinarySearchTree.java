@@ -29,7 +29,13 @@ public interface BinarySearchTree {
 	public void doubleBinaryTree();
 
 	public void getRootToLeafPaths();
+
+	public void getAllDepthsFromRootToLeaf();
+	
+	public int getTreeHeight();
 	
 	//public boolean sameTree(BinarySearchTree tree);
+	
+	
 
 }

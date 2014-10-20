@@ -98,16 +98,17 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		if(root == null){
 			return 0;
 		}else{
-			return maxDepth(root);
+			return maxDepth(root,0);
 		}
 	}
 	
-	private int maxDepth(Node node) {
+	private int maxDepth(Node node,int depth) {
 		if(node == null){
 			return 0;
 		}else{
-			int left = maxDepth(node.left);
-			int right = maxDepth(node.right);
+			depth = depth + 1;
+			int left = maxDepth(node.left,depth);
+			int right = maxDepth(node.right,depth);
 			return Math.max(left,right);
 		}
 	}
@@ -245,6 +246,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 					doubleBinaryTree(node.left.left);
 					doubleBinaryTree(node.right);	
 				}else{
+					// alright setting up this thing.. 
 					doubleBinaryTree(node.left.left);
 				}
 			}
@@ -306,6 +308,48 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		}
 		getRootToLeafPaths(node.left, new ArrayList<Node>(path));
 		getRootToLeafPaths(node.right, new ArrayList<Node>(path));
+	}
+
+	public void getAllDepthsFromRootToLeaf() {
+		if(root == null){
+			return;	
+		}
+		int depth =0;
+		getAllDepthsFromRootToLeaf(root, new ArrayList<Node>(), depth);
+	}
+
+	private void getAllDepthsFromRootToLeaf(Node node, ArrayList<Node> paths, int depth) {
+		if(node == null){
+			return;
+		}paths.add(node);
+		depth = depth + 1;
+		if(node.left == null && node.right == null){
+			for(Node n: paths){
+				System.out.print(n.data + "\t");
+			}
+			System.out.print("depth:" + depth + "\n");
+			return;
+		}
+		getAllDepthsFromRootToLeaf(node.left,new ArrayList<Node>(paths), depth);
+		getAllDepthsFromRootToLeaf(node.right,new ArrayList<Node>(paths), depth);
+	}
+
+	public int getTreeHeight() {
+		if(root == null){
+			return 0;
+		}
+		return Math.max(getTreeHeight(root.left, 1),getTreeHeight(root.right,1));
+		
+	}
+
+	private int getTreeHeight(Node node,int sum) {
+		if(node == null){
+			return 0;
+		}
+		sum = sum +1;		
+		getTreeHeight(node.left,sum);
+		getTreeHeight(node.right,sum);
+		return sum;
 	}
 
 }
