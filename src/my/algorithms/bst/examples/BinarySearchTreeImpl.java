@@ -357,7 +357,7 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 			return 0;
 		}
 		List<Node> list = new ArrayList<Node>();
-		 maxDepth1(root, list);
+		// maxDepth1(root, list);
 		 return 0;
 	}
 
