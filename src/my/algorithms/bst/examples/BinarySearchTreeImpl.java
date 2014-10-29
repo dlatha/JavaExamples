@@ -352,4 +352,23 @@ public class BinarySearchTreeImpl implements BinarySearchTree{
 		return sum;
 	}
 
+	public int maxDepth1() {
+		if(root == null){
+			return 0;
+		}
+		List<Node> list = new ArrayList<Node>();
+		 maxDepth1(root, list);
+		 return 0;
+	}
+
+	private void maxDepth1(Node node, ArrayList<Node> paths) {
+		if(node == null){
+			return;
+		}if(node.left == null && node.right == null){
+			System.out.print(paths);
+		}
+		paths.add(node);	
+		
+	}
+
 }

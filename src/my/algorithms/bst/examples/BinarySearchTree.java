@@ -36,6 +36,7 @@ public interface BinarySearchTree {
 	
 	//public boolean sameTree(BinarySearchTree tree);
 	
+	public int maxDepth1();
 	
 
 }
