@@ -39,6 +39,38 @@ public class ArrayInterpretations {
 		}
 	}
 	
+	/**
+	 * Get triplets of a sum from the array.
+	 * @param array
+	 */
+	public static void printSumTriplets(int[] array){
+		
+	}
+	
+	public static void quickSort(int[] array){
+		if(array == null){
+			return;
+		}
+		quickSort(array,0,array.length);
+	}
+	
+	private static void quickSort(int[] array, int start, int end) {
+		if(array== null){
+			return;
+		}
+		int pivot = start;
+		if(array[start] < array[pivot]){
+			
+		}else{
+			
+		}
+	}
+
+	private static int partition(int start, int end) {
+		int pivot = start;
+		return 0;
+	}
+
 	public static void main(String[] args) {
 		int[] array = {3,4,7,1,2,9,8};
 		printSumIndexes(array);
