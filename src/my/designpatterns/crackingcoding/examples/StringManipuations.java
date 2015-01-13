@@ -1,6 +1,8 @@
 package my.designpatterns.crackingcoding.examples;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -66,10 +68,48 @@ public class StringManipuations {
 		}
 	}
 
+	public static String longestTwoUniqueSubStr(String str){
+		List<String> chars = new ArrayList<String>();
+		String maxSubString = "";
+		String current = "";
+		int i=0;
+		for(char c: str.toCharArray()){
+			chars.clear();
+			chars.add(c + "");
+			current = c + "";
+			
+			for(int j = i+1; j <str.length(); j++){
+				if(chars.contains(str.charAt(j) + "")){
+					current = current + str.charAt(j);
+					if(current.length() > maxSubString.length()){
+						maxSubString = current;
+					}
+				}
+				else if(chars.size() == 1){
+					chars.add(str.charAt(j) + "");
+					current = current + str.charAt(j);
+					if(current.length() > maxSubString.length()){
+						maxSubString = current;
+					}
+				}else{
+					if(current.length() > maxSubString.length()){
+						maxSubString = current;
+					}
+					current = "";
+					break;
+				}
+			}
+			
+			i++;
+		}
+		return maxSubString;
+	}
 	public static void main(String[] args) {
-		String map = "123";
-		System.out.println(getAllValidMappings(map));
-
+//		String map = "123";
+//		System.out.println(getAllValidMappings(map));
+		String str = "lna;samsdaaaaaaaabbbbbbqwasdamasdllllllllllppppppppppppppasdadadqwdads";
+		System.out.println(longestTwoUniqueSubStr(str));
+		
 	}
 
 }

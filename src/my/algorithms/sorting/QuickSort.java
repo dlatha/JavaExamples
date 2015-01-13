@@ -55,40 +55,10 @@ public class QuickSort {
         array[j] = temp;
     }
      
-    public static void qsort(int[] A){
-    	if(A == null){
-    		return;
-    	}
-    	int start = 0;
-    	int end = A.length;
-    	qsort(A, start, end-1);
-    }
-    private static void qsort(int[] A, int i, int j) {
-    	
-		int pivot = A[i+(j-i)/2]; 
-		while(i <= j){
-			while(A[i] < pivot){
-				i++;
-			}while(A[j] > pivot){
-				j--;
-			}
-			if(i<=j){
-			int tmp = A[i];
-			A[i] = A[j];
-			A[j] = tmp;
-			i++;
-			j--;
-			}
-		}
-		qsort(A, i, pivot);
-		qsort(A,pivot,j);
-	}
-
 	public static void main(String a[]){
          
         QuickSort sorter = new QuickSort();
         int[] input = {24,2,45,20,56,75,2,56,99,53,12};
-        qsort(input);
         sorter.sort(input);
         for(int i:input){
             System.out.print(i);

@@ -46,28 +46,22 @@ public class ArrayInterpretations {
 	public static void printSumTriplets(int[] array){
 		
 	}
-	
-	public static void quickSort(int[] array){
-		if(array == null){
-			return;
-		}
-		quickSort(array,0,array.length);
-	}
-	
-	private static void quickSort(int[] array, int start, int end) {
-		if(array== null){
-			return;
-		}
-		int pivot = start;
-		if(array[start] < array[pivot]){
-			
-		}else{
-			
-		}
-	}
 
-	private static int partition(int start, int end) {
-		int pivot = start;
+	/**
+	 * Given a sorted array of integers, write a function that will return the number with the biggest number of repetitions. 
+		(Asked to refine the solution to be more efficient)
+	 * @param array
+	 * @return
+	 */
+	public static int returnMaxCountOfSortedArray(int[] array){
+		int count = 0,element;
+		int maxCount = 0;
+		for(int i=1; i<array.length;i++){
+			if(array[i] == array[i-1]){
+				count += 1;
+				element = array[i];
+			}
+		}
 		return 0;
 	}
 

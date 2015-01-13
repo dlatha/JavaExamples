@@ -1,6 +1,5 @@
 package my.designpatterns.crackingcoding.examples;
 
-import java.awt.color.CMMException;
 import java.util.HashMap;
 import java.util.Map;
 
